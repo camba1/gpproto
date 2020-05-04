@@ -1,0 +1,32 @@
+syntax = "proto3";
+option go_package = "gpProto/customer";
+
+package customer;
+
+service CustomerSrv {
+    rpc GetCustomer(SearchParams) returns (Customer) {}
+    rpc CreateCustomer(Customer) returns (Customer) {}
+}
+
+message location {
+    string street = 1;
+    string zipCode = 2;
+    string city = 3;
+    string country = 4;
+}
+
+message Customer {
+    string id = 1;
+    string name = 2;
+    repeated location address = 3;
+    enum Type {
+        INDIVIDUAL = 0;
+        BUSINESS = 1;
+    }
+    Type type = 4 ;
+}
+
+message SearchParams {
+    string id = 1;
+    string name = 2;
+}
