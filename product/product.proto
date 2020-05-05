@@ -1,0 +1,35 @@
+syntax = "proto3";
+option go_package = "gpProto/product";
+
+package product;
+
+//import  "google/protobuf/timestamp.proto";
+
+service ProductSrv {
+    rpc GetProduct(SearchParams) returns (Product) {}
+    rpc CreateProduct(Product) returns (Product) {}
+}
+
+
+message dimension {
+    double height =1;
+    double length = 2;
+    double width = 3;
+    enum dimType {
+        PRODUCT = 0;
+        SHIPPING = 1;
+    }
+    dimType type = 4;
+}
+
+message Product {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    repeated dimension dimensions = 4;
+}
+
+message SearchParams {
+    string id = 1;
+    string name = 2;
+}
