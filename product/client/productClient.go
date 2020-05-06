@@ -49,7 +49,7 @@ func CreateProduct(prodClient pb.ProductSrvClient, ctx context.Context) {
 	if err != nil {
 		log.Fatal("Unable to create Product")
 	}
-	fmt.Printf("Received customer %v\n", newProd)
+	fmt.Printf("Received product %v\n", newProd)
 }
 
 func main() {
