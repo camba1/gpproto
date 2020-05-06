@@ -1,0 +1,34 @@
+syntax = "proto3";
+option go_package = "gpProto/price";
+
+package price;
+
+import  "google/protobuf/timestamp.proto";
+
+service PriceSrv {
+    rpc GetPrice(SearchParams) returns (Price) {}
+    rpc CreatePrice(Price) returns (Price) {}
+}
+
+enum Type {
+    LIST = 0;
+    INTERNAL = 1;
+    GOGS = 2;
+}
+
+message Price {
+    string id = 1;
+    string productId = 2;
+    double value = 3;
+    google.protobuf.Timestamp validFrom = 4;
+    google.protobuf.Timestamp validThru = 5;
+    Type type = 6;
+    string customerId = 7;
+}
+
+message SearchParams {
+    string id = 1;
+    string productId = 2;
+    string customerId = 3;
+    Type type = 4;
+}
