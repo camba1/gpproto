@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  pricesrv:
+    build:
+      context: .
+      dockerfile: ./price/Dockerfile
+      target: Dev
+    container_name: pricesrvcont
+    entrypoint: CompileDaemon --build="go build -o priceServer ./price/server/" --command=./priceServer
+    volumes:
+      - ./price:/go/src/gpProto/price
+    ports:
+      - "50051:50051"
